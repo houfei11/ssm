@@ -33,17 +33,17 @@
     <!-- 03.生成dao代理對象 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sessionFactory"></property>
-        <property name="basePackage" value="cn.jpp.dao"></property>
+        <property name="basePackage" value="com.imooc.dao"></property>
     </bean>
 
     <!--04.配置service-->
-    <bean id="userService" class="">
-        <property name="dao" ref="IUserInfoDAO"></property>
+    <bean id="personalSer" class="com.imooc.service.Impl.PersonalServiceImpl">
+        <property name="iPersonal" ref="IPersonal"></property>
     </bean>
 
     <!-- 05.配置action -->
-    <bean id="/userAction.do" class="">
-        <property name="service" ref="userService"></property>
+    <bean id="/personalController" class="com.imooc.controller.PersonalController">
+        <property name="personalService" ref="personalSer"></property>
     </bean>
 
     <!-- 06.配置事务管理器 -->
@@ -63,8 +63,5 @@
         <aop:pointcut expression="execution(* *..service.*.*(..))" id="stockPointcut"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="stockPointcut"/>
     </aop:config>
-
-
-
 
 </beans>
